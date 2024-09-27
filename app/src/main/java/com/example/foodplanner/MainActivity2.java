@@ -8,7 +8,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.foodplanner.calender.view.CalenderFragment;
 import com.example.foodplanner.databinding.ActivityMain2Binding;
+import com.example.foodplanner.favourite.view.FavouriteFragment;
+import com.example.foodplanner.home.view.HomeFragment;
+import com.example.foodplanner.search.view.SearchFragment;
 
 public class MainActivity2 extends AppCompatActivity {
     ActivityMain2Binding binding;
