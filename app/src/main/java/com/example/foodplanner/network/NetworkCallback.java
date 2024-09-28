@@ -5,14 +5,15 @@ import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Meals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface NetworkCallback {
 
         public void onSuccessRandomResult(Meal meal);
         public void onFailureRandomResult(String errMSG);
 
-//        public void onSuccessSearchByNameResult(Meals meals);
-//        public void onFailureSearchByNameResult(String errMSG);
+        public void onSuccessSearchByNameResult(List<Meal> meals);
+        public void onFailureSearchByNameResult(String errMSG);
 //
 //        public void onSuccessSearchByID(Meal meal);
 //        public void onFailureSearchByID(String errMSG);

@@ -5,4 +5,11 @@
     <string name="search">Search Fragment\n</string>
     <string name="favourite">Favourite</string>
     <string name="calender">Calender Fragment</string>
+    <string name="name_of_meal">Meal Name</string>
+    <string name="content_description_pancakes">Pancakes Background</string>
+    <string name="country">Country</string>
+    <string name="instructions">Instructions</string>
+    <string name="img_bg">Image background</string>
+    <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
+
 </resources>

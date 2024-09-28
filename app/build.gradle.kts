@@ -55,5 +55,6 @@ dependencies {
     implementation ("com.airbnb.android:lottie:latest_version")
     implementation ("com.google.firebase:firebase-firestore:25.1.0")
     implementation ("androidx.navigation:navigation-fragment-ktx:2.8.1")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.1.0")
     implementation (libs.navigation.ui.ktx)
 }

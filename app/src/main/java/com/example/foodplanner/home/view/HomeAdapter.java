@@ -6,9 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,10 +17,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Category;
-import com.example.foodplanner.model.CategoryResponse;
-import com.example.foodplanner.model.Meal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
@@ -69,7 +64,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup recycler, int viewType) {
         //create a new view
         LayoutInflater inflater=LayoutInflater.from(recycler.getContext());
-        View v=inflater.inflate(R.layout.category_row,recycler,false);
+        View v=inflater.inflate(R.layout.row_category,recycler,false);
         ViewHolder vh=new ViewHolder(v);
         Log.i(TAG, "****** onCreateViewHolder ***********");
         return vh;
@@ -82,7 +77,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
         holder.txtTitle.setText(values.get(position).getName());
        // holder.txtCategory.setText(values.get(position).getStrCategory());
         Glide.with(context).load(values.get(position).getImgSource()).apply(new RequestOptions().override(150,150)
-                        .placeholder(R.drawable.ic_launcher_background))
+                        .placeholder(R.drawable.loadingimag_animation))
                 .into(holder.imgView);
 
 //        holder.btnFavourite.setOnClickListener(new View.OnClickListener() {

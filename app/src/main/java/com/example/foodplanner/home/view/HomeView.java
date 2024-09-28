@@ -8,6 +8,6 @@ import java.util.List;
 public interface HomeView {
      public void showRandomMeal(Meal meal);
      public void showCategoryMeal(List<Category> categories);
-     void  showError (String str);
+     public void  showError (String str);
 
 }

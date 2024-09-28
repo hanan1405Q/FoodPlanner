@@ -1,8 +1,10 @@
 package com.example.foodplanner.home.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealLocalDataSource;
+import com.example.foodplanner.features.detailed_meal.view.DetailedMeal;
 import com.example.foodplanner.home.presenter.HomePresenter;
 import com.example.foodplanner.model.Category;
 import com.example.foodplanner.model.Meal;
@@ -30,12 +33,14 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeView {
 
+    public static final String mealName="MEAL_NAME";
     RecyclerView recyclerView;
     HomeAdapter adt;
     List<Category> categories;
     HomePresenter homePresenter;
     ImageView imgMeal;
     TextView txMealName;
+    CardView  cardView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,9 +55,22 @@ public class HomeFragment extends Fragment implements HomeView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        /*Take Refrence To Card Components */
+        /*Take Reference To Card Components */
         imgMeal = view.findViewById(R.id.imgMeal);
         txMealName = view.findViewById(R.id.txtMealName);
+        cardView=view.findViewById(R.id.cardMeal);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getActivity(), DetailedMeal.class);
+                intent.putExtra(mealName,txMealName.getText().toString());
+                String str=txMealName.getText().toString();
+                //Toast.makeText(requireContext(), "I am Leaving Home Fragment to Detailed Meal Activity  ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(requireContext(), "Meal Name = "+ str, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+
 
         /*setup the recycler view */
         recyclerView = view.findViewById(R.id.recycler_randomCategory);
@@ -76,7 +94,7 @@ public class HomeFragment extends Fragment implements HomeView {
         txMealName.setText(meal.getName());
         Glide.with(requireContext()).load(meal.getImgSource())
                 .apply(new RequestOptions().override(300, 300)
-                        .placeholder(R.drawable.ic_launcher_background))
+                        .placeholder(R.drawable.loadingimag_animation))
                 .into(imgMeal);
 
     }

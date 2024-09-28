@@ -6,6 +6,8 @@ import com.example.foodplanner.model.CategoryResponse;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Meals;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,34 +70,44 @@ public class MealRemoteDataSource {
         });
     }
 
-//    public void makeSearchByNameNetworkCallback(NetworkCallback networkCallback,String mealName)
-//    {
-//        Call<Meals> call = mealService.searchMealByName(mealName);
-//        Log.i(TAG, "Request URL: " + call.request().url());
-//        //enqueue-> make asynch call
-//        call.enqueue(new Callback<Meals>() {
-//            @Override
-//            public void onResponse(Call<Meals> call, Response<Meals> response) {
-//                if(response.isSuccessful())
-//                {
-//                    Log.i(TAG, "onResponseCallback: " +response.raw()+ response.body().getMeals());
-//                    networkCallback.onSuccessSearchByNameResult(response.body());
-//                }
-//                else {
-//                    Log.e(TAG, "Response Error: Code " + response.code() + " Message: " + response.message());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Meals> call, Throwable t) {
-//                Log.i(TAG, "onFailureCallback" );
-//                networkCallback.onFailureSearchByNameResult(t.getMessage());
-//                t.printStackTrace();
-//
-//            }
-//        });
-//    }
-//
+    public void makeSearchByNameNetworkCallback(NetworkCallback networkCallback,String mealName)
+    {
+        Call<Meals> call = mealService.searchMealByName(mealName);
+        Log.i(TAG, "Request URL: " + call.request().url());
+        //enqueue-> make asynch call
+        call.enqueue(new Callback<Meals>() {
+            @Override
+            public void onResponse(Call<Meals> call, Response<Meals> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        // Get the list of meals from the response body
+                        List<Meal> meals = response.body().getMeals();
+
+                        Log.i(TAG, "onResponseCallback: Meals retrieved: " + meals);
+                        if (networkCallback != null) {
+                            networkCallback.onSuccessSearchByNameResult(meals);
+                        } else {
+                            Log.e(TAG, "Network callback is not initialized.");
+                        }
+                    } else {
+                        Log.e(TAG, "Response body is null.");
+                    }
+                } else {
+                    Log.e(TAG, "Response Error: Code " + response.code() + " Message: " + response.message());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Meals> call, Throwable t) {
+                Log.i(TAG, "onFailureCallback" );
+                networkCallback.onFailureSearchByNameResult(t.getMessage());
+                t.printStackTrace();
+
+            }
+        });
+    }
+
 //
 //    public void makeSearchByIDNetworkCallback(NetworkCallback networkCallback,String mealId)
 //    {

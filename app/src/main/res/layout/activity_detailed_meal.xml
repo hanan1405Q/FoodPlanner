@@ -1,0 +1,132 @@
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/base_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- CardView for Meal Image and Details -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_mealDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <!-- Meal Image -->
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imgDetailedMeal"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="16dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/content_description_pancakes"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundCorner"
+                    tools:src="@drawable/test_img" />
+
+                <!-- Meal Name -->
+                <TextView
+                    android:id="@+id/txtDetailedMealName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/meriendavariablefontwght"
+                    android:maxLines="2"
+                    android:text="@string/name_of_meal"
+                    android:textAlignment="center"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <!-- Meal Country -->
+                <TextView
+                    android:id="@+id/txtMealCountry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/meriendavariablefontwght"
+                    android:text="@string/country"
+                    android:textColor="@color/whitePink"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Floating Action Buttons -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/whitePink"
+            android:contentDescription="Add to favorites"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_mealDetails"
+            app:srcCompat="@drawable/baseline_favorite_border_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:tint="@color/whitePink"
+            android:contentDescription="Add to Calender"
+            app:layout_constraintStart_toEndOf="@id/fab_favorite"
+            app:layout_constraintTop_toBottomOf="@id/card_mealDetails"
+            app:srcCompat="@drawable/calendar_month_24dp_e8eaed_fill0_wght400_grad0_opsz24" />
+
+        <!-- Ingredients RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fab_calendar" />
+
+        <!-- Video Section -->
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/vidMeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
+            app:autoPlay="false"
+            app:layout_constraintTop_toBottomOf="@+id/rvIngredient"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- Meal Instructions -->
+        <TextView
+            android:id="@+id/txtInstruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:fontFamily="@font/meriendavariablefontwght"
+            android:text="@string/instructions"
+            android:textSize="18sp"
+            android:textColor="@color/darkBlue"
+            app:layout_constraintTop_toBottomOf="@id/vidMeal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

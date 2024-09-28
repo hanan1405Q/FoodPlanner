@@ -36,6 +36,11 @@ public class Repository {
         mealRemoteDataSource.makeListMealCategoriesNetworkCallback(networkCallBack);
     }
 
+    public void getMealByName(NetworkCallback networkCallback,String mealName)
+    {
+        mealRemoteDataSource.makeSearchByNameNetworkCallback(networkCallback,mealName);
+    }
+
 
 
 //    public void insertProduct (Product products)

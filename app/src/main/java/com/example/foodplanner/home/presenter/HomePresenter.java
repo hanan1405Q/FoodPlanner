@@ -11,6 +11,7 @@ import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.NetworkCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomePresenter implements NetworkCallback {
 
@@ -47,6 +48,16 @@ public class HomePresenter implements NetworkCallback {
 
         Log.i("MealRes","Failed to Fetch Image");
         homeView.showError("Failed to Fetch Image");
+    }
+
+    @Override
+    public void onSuccessSearchByNameResult(List<Meal> meals) {
+
+    }
+
+    @Override
+    public void onFailureSearchByNameResult(String errMSG) {
+
     }
 
     @Override
