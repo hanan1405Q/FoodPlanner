@@ -7,147 +7,147 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="@color/backgroundColor"
     tools:context=".home.view.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#E91E63">
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_width="match_parent"
+android:layout_height="match_parent">
 
-        <!-- Vertical Guidelines -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_vertical_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05"/>
+<!-- Vertical Guidelines -->
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/gl_vertical_start"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.05"/>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_vertical_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.95"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/gl_vertical_end"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent="0.95"/>
 
-        <!-- Horizontal Guidelines -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_horizontal_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.06"/>
+<!-- Horizontal Guidelines -->
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/gl_horizontal_top"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.06"/>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_horizontal_bottom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.95"/>
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/gl_horizontal_bottom"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.95"/>
 
-        <!-- Daily Meal Title TextView -->
-        <TextView
-            android:id="@+id/txtDailyMealTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alkatra_medium"
-            android:text="Daily Meal"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/gl_horizontal_top"/>
+<!-- Daily Meal Title TextView -->
+<TextView
+    android:id="@+id/txtDailyMealTitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/alkatra_medium"
+    android:text="Daily Meal"
+    android:textColor="@color/titleColor"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@+id/gl_horizontal_top"/>
 
-        <!-- CardView for Meal -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardMeal"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtDailyMealTitle">
+<!-- CardView for Meal -->
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardMeal"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:backgroundTint="@color/babyPink"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.5"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/txtDailyMealTitle">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
 
-                <!-- Meal ImageView -->
-                <ImageView
-                    android:id="@+id/imgMeal"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintDimensionRatio="1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <!-- Meal ImageView -->
+    <ImageView
+        android:id="@+id/imgMeal"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundCorner"/>
 
-                <!-- Meal Name TextView -->
-                <TextView
-                    android:id="@+id/txtMealName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="casual"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imgMeal" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Meal Name TextView -->
+    <TextView
+        android:id="@+id/txtMealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:textColor="@color/bodyTextColor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgMeal" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
 
-        </androidx.cardview.widget.CardView>
+    <!-- Title for Random Category -->
+    <TextView
+        android:id="@+id/txtRandomCategoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/alkatra_medium"
+        android:text="Random Categories"
+        android:textColor="@color/titleColor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/recycler_randomCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardMeal"
+        app:shapeAppearanceOverlay="@style/RoundCorner"/>
 
-        <!-- Title for Random Category -->
-        <TextView
-            android:id="@+id/txtRandomCategoryTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/alkatra_medium"
-            android:text="Random Categories"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardMeal"
-            app:layout_constraintBottom_toTopOf="@id/recycler_randomCategory" />
+    <!-- Random Category RecyclerView -->
+<androidx.recyclerview.widget.RecyclerView
+android:id="@+id/recycler_randomCategory"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="15dp"
+android:layout_marginBottom="20dp"
+app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+app:spanCount="1"
+app:layout_constraintTop_toBottomOf="@id/txtRandomCategoryTitle"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"/>
 
-        <!-- Random Category RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_randomCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="20dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="1"
-            app:layout_constraintTop_toBottomOf="@id/txtRandomCategoryTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <!-- Random Ingredient RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_randomIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="1"
-            app:layout_constraintTop_toBottomOf="@id/recycler_randomCategory"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="@+id/gl_horizontal_bottom"/>
-
+    <!-- Random Ingredient RecyclerView -->
+<androidx.recyclerview.widget.RecyclerView
+android:id="@+id/recycler_randomIngredient"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginTop="10dp"
+app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+app:spanCount="1"
+app:layout_constraintTop_toBottomOf="@id/recycler_randomCategory"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintBottom_toBottomOf="@+id/gl_horizontal_bottom"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>

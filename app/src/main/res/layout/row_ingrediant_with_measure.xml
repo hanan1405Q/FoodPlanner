@@ -13,12 +13,13 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/btn_round_background"
+        android:background="@color/babyPink"
         android:contentDescription="@string/img_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundCorner"
         />
 
     <ImageView
@@ -31,6 +32,7 @@
         app:layout_constraintEnd_toEndOf="@+id/imgBackground"
         app:layout_constraintStart_toStartOf="@+id/imgBackground"
         app:layout_constraintTop_toTopOf="@+id/imgBackground"
+        app:shapeAppearanceOverlay="@style/RoundCorner"
         />
 
     <TextView
