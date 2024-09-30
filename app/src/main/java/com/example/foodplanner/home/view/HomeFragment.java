@@ -33,7 +33,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment implements HomeView {
 
-    public static final String mealName="MEAL_NAME";
+    public static final String mealObject="MEAL_OBJECT";
     RecyclerView recyclerView;
     HomeAdapter adt;
     List<Category> categories;
@@ -41,13 +41,12 @@ public class HomeFragment extends Fragment implements HomeView {
     ImageView imgMeal;
     TextView txMealName;
     CardView  cardView;
+    Meal targetMeal;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        homePresenter = new HomePresenter(this, Repository.getInstance(MealRemoteDataSource.getInstance()));
-        //, MealLocalDataSource.getInstance(getApplicationContext())));
-
+        homePresenter = new HomePresenter(this, Repository.getInstance(MealRemoteDataSource.getInstance(),MealLocalDataSource.getInstance(requireContext())));
     }
 
     @Override
@@ -63,11 +62,11 @@ public class HomeFragment extends Fragment implements HomeView {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), DetailedMeal.class);
-                intent.putExtra(mealName,txMealName.getText().toString());
-                String str=txMealName.getText().toString();
-                //Toast.makeText(requireContext(), "I am Leaving Home Fragment to Detailed Meal Activity  ", Toast.LENGTH_SHORT).show();
-                //Toast.makeText(requireContext(), "Meal Name = "+ str, Toast.LENGTH_SHORT).show();
+                intent.putExtra(mealObject,targetMeal);
                 startActivity(intent);
+                // String str=txMealName.getText().toString();
+                Toast.makeText(requireContext(), "I am Leaving Home Fragment to Detailed Meal Activity  ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Meal Name = "+ targetMeal.getName().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -90,6 +89,7 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void showRandomMeal(Meal meal) {
+        targetMeal=meal;
         //Toast.makeText(requireContext(),meal.getName(),Toast.LENGTH_SHORT).show();
         txMealName.setText(meal.getName());
         Glide.with(requireContext()).load(meal.getImgSource())

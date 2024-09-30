@@ -1,66 +1,115 @@
 package com.example.foodplanner.favourite.view;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.foodplanner.R;
+import com.example.foodplanner.db.MealLocalDataSource;
+import com.example.foodplanner.favourite.presenter.FavPresenter;
+import com.example.foodplanner.features.detailed_meal.view.DetailedMeal;
+import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.Repository;
+import com.example.foodplanner.network.MealRemoteDataSource;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FavouriteFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class FavouriteFragment extends Fragment {
+import java.util.ArrayList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class FavouriteFragment extends Fragment implements FavView,FavFragmentOnclick {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    RecyclerView recyclerView;
+    FavAdapter adt;
+    List<Meal> meals;
+    FavPresenter favPresenter;
+    AlertDialog.Builder builder;
+    public static final String mealObject="MEAL_OBJECT";
 
-    public FavouriteFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FavouriteFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FavouriteFragment newInstance(String param1, String param2) {
-        FavouriteFragment fragment = new FavouriteFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        /*Creating the Presenter*/
+        favPresenter=new FavPresenter(this,
+        Repository.getInstance(MealRemoteDataSource.getInstance(),
+                MealLocalDataSource.getInstance(requireContext())));
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favourite, container, false);
+        View v=inflater.inflate(R.layout.fragment_favourite, container, false);
+
+        recyclerView = v.findViewById(R.id.rvMyFavMeals);
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager mgr = new LinearLayoutManager(requireContext());
+        mgr.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(mgr);
+
+        meals = new ArrayList<Meal>(){};
+        adt=new FavAdapter(requireContext(),meals,this);
+        recyclerView.setAdapter(adt);
+
+        favPresenter.observeFavMeals(this);
+
+        //alert dialog
+        builder = new AlertDialog.Builder(requireContext());
+        builder.setTitle("Alert !");
+        builder.setCancelable(false);
+
+        return v;
+    }
+
+    @Override
+    public void setMeals(List<Meal> meals) {
+         adt.setValues(meals);
+    }
+
+    @Override
+    public void showError(String str)
+    {
+        Toast.makeText(requireContext(),"Can not Load Favorite Meals",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteClick(Meal meal) {
+        alert(meal);
+
+    }
+
+    @Override
+    public void onCardClick(Meal meal) {
+        Intent intent=new Intent(getActivity(), DetailedMeal.class);
+        intent.putExtra(mealObject,meal);
+        startActivity(intent);
+    }
+
+
+    void alert (Meal meal)
+    {
+        builder.setMessage("Are you sure you want to remove "+meal.getName()+" from favorites?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
+       // When the user click yes button then app will close
+           favPresenter.deleteMeal(meal);
+        });
+        builder.setNegativeButton("Cancel", (DialogInterface.OnClickListener) (dialog, which) -> {
+            // If user click no then dialog box is canceled.
+            dialog.cancel();
+        });
+        AlertDialog alertDialog = builder.create();
+        // Show the Alert Dialog box
+        alertDialog.show();
     }
 }

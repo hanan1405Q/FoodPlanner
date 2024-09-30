@@ -11,7 +11,7 @@ import com.example.foodplanner.network.NetworkCallback;
 
 import java.util.List;
 
-public class DetailedMealPresenter implements NetworkCallback {
+public class DetailedMealPresenter {
     Repository repo;
     DetailedMealView view;
 
@@ -23,24 +23,24 @@ public class DetailedMealPresenter implements NetworkCallback {
     }
 
 
+//
+//    public  void getMealByName(String mealName)
+//    {
+//        Log.i("GetMealByName","Request from Repo to get a Specific Meal By Name");
+//        repo.getMealByName(this,mealName);
+//    }
+//
 
-    public  void getMealByName(String mealName)
-    {
-        Log.i("GetMealByName","Request from Repo to get a Specific Meal By Name");
-        repo.getMealByName(this,mealName);
-    }
-
-
-    @Override
-    public void onSuccessSearchByNameResult(List<Meal> meals) {
-        Log.i("SearchRes","Success to Get Specific Meal By Name");
-        view.showMeal(meals);
-    }
-
-    @Override
-    public void onFailureSearchByNameResult(String errMSG) {
-             view.showError(errMSG);
-    }
+//    @Override
+//    public void onSuccessSearchByNameResult(List<Meal> meals) {
+//        Log.i("SearchRes","Success to Get Specific Meal By Name");
+//        view.showMeal(meals);
+//    }
+//
+//    @Override
+//    public void onFailureSearchByNameResult(String errMSG) {
+//             view.showError(errMSG);
+//    }
 
     public void  checkYouTubeURL(String url)
     {
@@ -58,25 +58,12 @@ public class DetailedMealPresenter implements NetworkCallback {
 
     }
 
+    public void addToFav(Meal meal)
+    {
+        repo.insertMeal(meal);
+    }
+
 
 /************************************************************************************/
-    @Override
-    public void onSuccessRandomResult(Meal meal) {
 
-    }
-
-    @Override
-    public void onFailureRandomResult(String errMSG) {
-
-    }
-
-    @Override
-    public void onSuccessListMealCategories(CategoryResponse categories) {
-
-    }
-
-    @Override
-    public void onFailureListMealCategories(String errMSG) {
-
-    }
 }

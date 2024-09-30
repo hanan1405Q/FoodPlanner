@@ -1,9 +1,12 @@
 package com.example.foodplanner.features.detailed_meal.view;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
+import com.example.foodplanner.db.MealLocalDataSource;
 import com.example.foodplanner.features.detailed_meal.presenter.DetailedMealPresenter;
 import com.example.foodplanner.home.presenter.HomePresenter;
 import com.example.foodplanner.home.view.HomeAdapter;
@@ -42,6 +46,8 @@ import java.util.List;
 public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
 
     DetailedMealPresenter mealPresenter;
+
+    Meal targetMeal;
 
     TextView txtCountry;
     TextView txtMealName;
@@ -66,7 +72,7 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
         setContentView(R.layout.activity_detailed_meal);
 
         /*Initialize The Presenter ***(SO IMPORTANT)****/
-        mealPresenter=new DetailedMealPresenter(this,Repository.getInstance(MealRemoteDataSource.getInstance()));
+        mealPresenter=new DetailedMealPresenter(this,Repository.getInstance(MealRemoteDataSource.getInstance(), MealLocalDataSource.getInstance(getApplicationContext())));
 
         /*assign an inflated view object to the reference*/
         txtMealName=findViewById(R.id.txtDetailedMealName);
@@ -90,20 +96,28 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
         rvIngredient.setAdapter(adt);
 
         /*extract the info from intent (which is brought me here)*/
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
         // Retrieve the data from the Intent
-        String mealName = intent.getStringExtra(HomeFragment.mealName);
-        Log.i("MealName = ",mealName);
-        mealPresenter.getMealByName(mealName);
+        targetMeal = (Meal) getIntent().getSerializableExtra("MEAL_OBJECT");
+        showMeal(targetMeal);
+
+         /*Debuging Purpose */
+//        if(targetMeal==null)
+//        {
+//            Toast.makeText(getApplicationContext(),"extract Null obj from intent ", LENGTH_SHORT).show();
+//        }
+//        Toast.makeText(getApplicationContext(),"I am in Detailed meal Activity  after extract obj from intent ", LENGTH_SHORT).show();
+//        Log.i("MealName = ",targetMeal.getName());
+
+       // Log.i("MealName = ",mealName);
+        // mealPresenter.getMealByName(mealName);
 
 
 
     }
 
-    @Override
-    public void showMeal(List<Meal> meals) {
-        Meal meal=meals.get(0);
-
+    public void showMeal(Meal meal)
+    {
         Glide.with(getApplicationContext()).load(meal.getImgSource())
                 .apply(new RequestOptions().override(300, 300)
                 .placeholder(R.drawable.loadingimag_animation))
@@ -115,12 +129,42 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
         mealPresenter.checkYouTubeURL(meal.getYoutubeSource());
         txtInstruction.setText(meal.getInstructions());
 
+        fabFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mealPresenter.addToFav(meal);
+            }
+        });
     }
 
-    @Override
-    public void showError(String str) {
-        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public void showMeal(List<Meal> meals) {
+//        Meal meal=meals.get(0);
+//
+//        Glide.with(getApplicationContext()).load(meal.getImgSource())
+//                .apply(new RequestOptions().override(300, 300)
+//                .placeholder(R.drawable.loadingimag_animation))
+//                .into(imgMeal);
+//        txtMealName.setText(meal.getName());
+//        txtCountry.setText(meal.getArea());
+//
+//        adt.setData(meal.getIngredientAndMeasure());
+//        mealPresenter.checkYouTubeURL(meal.getYoutubeSource());
+//        txtInstruction.setText(meal.getInstructions());
+//
+//        fabFavourite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mealPresenter.addToFav(meal);
+//            }
+//        });
+//
+//    }
+//
+//    @Override
+//    public void showError(String str) {
+//        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+//    }
 
     @Override
     public void playYouTubeVideo(String videoId) {
@@ -135,6 +179,6 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
 
     @Override
     public void showInvalidUrl() {
-        Toast.makeText(this, "Invalid YouTube URL", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Invalid YouTube URL", LENGTH_SHORT).show();
     }
 }

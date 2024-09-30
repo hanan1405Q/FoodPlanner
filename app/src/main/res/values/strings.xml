@@ -11,5 +11,7 @@
     <string name="instructions">Instructions</string>
     <string name="img_bg">Image background</string>
     <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
+    <string name="myfavmeal">My Favourite Meals\n</string>
+    <string name="delete_meal">Delet Meal</string>
 
 </resources>

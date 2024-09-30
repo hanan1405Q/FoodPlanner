@@ -5,11 +5,12 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "meals_table")
-public class Meal {
+public class Meal implements Serializable {
 
     @PrimaryKey
     @NonNull
@@ -19,8 +20,8 @@ public class Meal {
     @SerializedName("strMeal")
     public String  name;
 
-    @SerializedName("strDrinkAlternate")
-    public Object  drink;
+//    @SerializedName("strDrinkAlternate")
+//    public Object  drink;
 
     @SerializedName("strCategory")
     public String  category;
@@ -181,13 +182,13 @@ public class Meal {
         this.name = name;
     }
 
-    public Object getDrink() {
-        return drink;
-    }
-
-    public void setDrink(Object drink) {
-        this.drink = drink;
-    }
+//    public Object getDrink() {
+//        return drink;
+//    }
+//
+//    public void setDrink(Object drink) {
+//        this.drink = drink;
+//    }
 
     public String getCategory() {
         return category;

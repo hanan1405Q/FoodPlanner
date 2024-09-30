@@ -33,8 +33,6 @@ public class HomePresenter implements NetworkCallback {
     {
         Log.i("MealReq","Request from Repo to get category");
         repository.getCategoryMeal(this);
-
-
     }
 
     @Override
@@ -51,16 +49,6 @@ public class HomePresenter implements NetworkCallback {
     }
 
     @Override
-    public void onSuccessSearchByNameResult(List<Meal> meals) {
-
-    }
-
-    @Override
-    public void onFailureSearchByNameResult(String errMSG) {
-
-    }
-
-    @Override
     public void onSuccessListMealCategories(CategoryResponse categories) {
 
         Log.i("CatRes","Success to Fetch Category List");
@@ -71,6 +59,16 @@ public class HomePresenter implements NetworkCallback {
     public void onFailureListMealCategories(String errMSG) {
         Log.i("CatRes","Failed to Fetch Category list");
         homeView.showError("Failed to Fetch Category");
+    }
+
+    @Override
+    public void onSuccessSearchByNameResult(List<Meal> meals) {
+
+    }
+
+    @Override
+    public void onFailureSearchByNameResult(String errMSG) {
+
     }
 
 //    public void addToFav(Product product)
