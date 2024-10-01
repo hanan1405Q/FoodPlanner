@@ -133,6 +133,7 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
             @Override
             public void onClick(View view) {
                 mealPresenter.addToFav(meal);
+                Toast.makeText(getApplicationContext(),"This Meal Added To Favourite", LENGTH_SHORT).show();
             }
         });
     }

@@ -58,7 +58,7 @@ public class FavouriteFragment extends Fragment implements FavView,FavFragmentOn
         recyclerView.setLayoutManager(mgr);
 
         meals = new ArrayList<Meal>(){};
-        adt=new FavAdapter(requireContext(),meals,this);
+        adt=new FavAdapter(requireContext(),meals,this,true);
         recyclerView.setAdapter(adt);
 
         favPresenter.observeFavMeals(this);

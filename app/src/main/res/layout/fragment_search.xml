@@ -1,18 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/searchFrage"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/backgroundColor"
     tools:context=".search.view.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/txtSearch"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#673AB7"
-        android:text="@string/search"
-        android:textSize="20sp" />
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
-</FrameLayout>
+        <!-- SearchView for searching meals -->
+        <android.widget.SearchView
+            android:id="@+id/searchViewFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search for a meal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Search here ....." />
+
+        <!-- 'Searched by' TextView with pink background -->
+        <TextView
+            android:id="@+id/txtSearchedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Searched by"
+            android:fontFamily="@font/meriendavariablefontwght"
+            android:textStyle="bold"
+            android:textColor="@color/titleColor"
+            android:textSize="18sp"
+            android:background="@color/babyPink"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/searchViewFragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+
+        <!-- RadioGroup for search filters -->
+        <RadioGroup
+            android:id="@+id/radioGroupSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/txtSearchedBy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp">
+
+            <!-- RadioButton for Search by Meal Name -->
+            <RadioButton
+                android:id="@+id/radioMealName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meal Name"
+                android:fontFamily="@font/meriendavariablefontwght"
+                android:textStyle="bold"
+                android:textColor="@color/bodyTextColor"
+                android:textSize="16sp"
+                android:buttonTint="@color/babyPink"/> <!-- Pink color when checked -->
+
+            <!-- RadioButton for Search by Category -->
+            <RadioButton
+                android:id="@+id/radioCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textStyle="bold"
+                android:fontFamily="@font/meriendavariablefontwght"
+                android:textColor="@color/bodyTextColor"
+                android:textSize="16sp"
+                android:buttonTint="@color/babyPink"
+                android:checked="true"/> <!-- Pink color when checked -->
+
+            <!-- RadioButton for Search by Ingredient -->
+            <RadioButton
+                android:id="@+id/radioIngredient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ingredient"
+                android:textStyle="bold"
+                android:fontFamily="@font/meriendavariablefontwght"
+                android:textColor="@color/bodyTextColor"
+                android:textSize="16sp"
+                android:buttonTint="@color/babyPink"/> <!-- Pink color when checked -->
+
+            <!-- RadioButton for Search by Country -->
+            <RadioButton
+                android:id="@+id/radioCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Country"
+                android:textStyle="bold"
+                android:fontFamily="@font/meriendavariablefontwght"
+                android:textColor="@color/bodyTextColor"
+                android:textSize="16sp"
+                android:buttonTint="@color/babyPink"/> <!-- Pink color when checked -->
+
+        </RadioGroup>
+
+        <!-- RecyclerView for displaying search results -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSearchResults"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/txtSearchedBy"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

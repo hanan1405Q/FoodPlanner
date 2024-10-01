@@ -35,22 +35,26 @@ public interface MealService {
 //        @GET("list.php")
 //        Call<CategoryList> listCategories(@Query("c") String categoryList);
 //
-//        // List all areas
-//        @GET("list.php")
-//        Call<AreaList> listAreas(@Query("a") String areaList);
-//
-//        // List all ingredients
-//        @GET("list.php")
-//        Call<IngredientList> listIngredients(@Query("i") String ingredientList);
-//
-//        // Filter meals by main ingredient
-//        @GET("filter.php")
-//        Call<MealList> filterByMainIngredient(@Query("i") String mainIngredient);
-//
-//
-//        // Filter meals by area
-//        @GET("filter.php")
-//        Call<MealList> filterByArea(@Query("a") String area);
+        // List all areas
+        @GET("list.php")
+        Call<Meals> listAreas(@Query("a") String areaList);
+
+        // List all ingredients
+        @GET("list.php")
+        Call<Meals> listIngredients(@Query("i") String ingredientList);
+
+        // Filter meals by main ingredient
+        @GET("filter.php")
+        Call<Meals> filterByMainIngredient(@Query("i") String mainIngredient);
+
+        // Filter meals by area
+        @GET("filter.php")
+        Call<Meals> filterByArea(@Query("a") String area);
+
+       // Filter meals by category
+       @GET("filter.php")
+       Call<Meals> filterByCategory(@Query("c") String category);
+
 
     }
 

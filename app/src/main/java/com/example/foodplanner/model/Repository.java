@@ -44,6 +44,22 @@ public class Repository {
         mealRemoteDataSource.makeSearchByNameNetworkCallback(networkCallback,mealName);
     }
 
+    public void filterByArea(NetworkCallback networkCallback,String mealName)
+    {
+        mealRemoteDataSource.makeFilterByAreaNetworkCallback(networkCallback,mealName);
+    }
+
+    public void filterByCategory(NetworkCallback networkCallback,String mealName)
+    {
+        mealRemoteDataSource.makeFilterByCategoryNetworkCallback(networkCallback,mealName);
+    }
+
+    public void filterByIngredient(NetworkCallback networkCallback,String mealName)
+    {
+        mealRemoteDataSource.makeFilterByIngredientNetworkCallback(networkCallback,mealName);
+    }
+
+    /*****  LocalDataSource (RooM)     ********/
     public void insertMeal(Meal meal)
     {
         mealLocalDataSource.insertMeal(meal);

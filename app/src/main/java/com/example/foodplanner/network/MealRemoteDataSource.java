@@ -69,6 +69,7 @@ public class MealRemoteDataSource {
             }
         });
     }
+/*******************************************************************************************************/
 
     public void makeSearchByNameNetworkCallback(NetworkCallback networkCallback,String mealName)
     {
@@ -108,6 +109,7 @@ public class MealRemoteDataSource {
         });
     }
 
+    /******************************************************************************************/
 //
 //    public void makeSearchByIDNetworkCallback(NetworkCallback networkCallback,String mealId)
 //    {
@@ -192,7 +194,121 @@ public class MealRemoteDataSource {
             }
         });
     }
+/*******************************************************************************************/
+public void makeFilterByCategoryNetworkCallback(NetworkCallback networkCallback,String mealName)
+{
+    Call<Meals> call = mealService.filterByCategory(mealName);
+    Log.i(TAG, "Request URL: " + call.request().url());
+    //enqueue-> make asynch call
+    call.enqueue(new Callback<Meals>() {
+        @Override
+        public void onResponse(Call<Meals> call, Response<Meals> response) {
+            if (response.isSuccessful()) {
+                if (response.body() != null) {
+                    // Get the list of meals from the response body
+                    List<Meal> meals = response.body().getMeals();
 
+                    Log.i(TAG, "onResponseCallback: Meals retrieved: " + meals);
+                    if (networkCallback != null) {
+                        networkCallback.onSuccessFilterByCategory(meals);
+                    } else {
+                        Log.e(TAG, "Network callback is not initialized.");
+                    }
+                } else {
+                    Log.e(TAG, "Response body is null.");
+                }
+            } else {
+                Log.e(TAG, "Response Error: Code " + response.code() + " Message: " + response.message());
+            }
 
+        }
 
+        @Override
+        public void onFailure(Call<Meals> call, Throwable t) {
+            Log.i(TAG, "onFailureCallback" );
+            networkCallback.onFailureFilterByCategory(t.getMessage());
+            t.printStackTrace();
+
+        }
+    });
+}
+/******************************************************************************/
+
+public void makeFilterByIngredientNetworkCallback(NetworkCallback networkCallback,String mealName)
+{
+    Call<Meals> call = mealService.filterByMainIngredient(mealName);
+    Log.i(TAG, "Request URL: " + call.request().url());
+    //enqueue-> make asynch call
+    call.enqueue(new Callback<Meals>() {
+        @Override
+        public void onResponse(Call<Meals> call, Response<Meals> response) {
+            if (response.isSuccessful()) {
+                if (response.body() != null) {
+                    // Get the list of meals from the response body
+                    List<Meal> meals = response.body().getMeals();
+
+                    Log.i(TAG, "onResponseCallback: Meals retrieved: " + meals);
+                    if (networkCallback != null) {
+                        networkCallback.onSuccessFilterByIngredient(meals);
+                    } else {
+                        Log.e(TAG, "Network callback is not initialized.");
+                    }
+                } else {
+                    Log.e(TAG, "Response body is null.");
+                }
+            } else {
+                Log.e(TAG, "Response Error: Code " + response.code() + " Message: " + response.message());
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<Meals> call, Throwable t) {
+            Log.i(TAG, "onFailureCallback" );
+            networkCallback.onFailureFilterByIngredient(t.getMessage());
+            t.printStackTrace();
+
+        }
+    });
+}
+/********************************************************************************************/
+
+public void makeFilterByAreaNetworkCallback(NetworkCallback networkCallback,String mealName)
+{
+    Call<Meals> call = mealService.filterByArea(mealName);
+    Log.i(TAG, "Request URL: " + call.request().url());
+    //enqueue-> make asynch call
+    call.enqueue(new Callback<Meals>() {
+        @Override
+        public void onResponse(Call<Meals> call, Response<Meals> response) {
+            if (response.isSuccessful()) {
+                if (response.body() != null) {
+                    // Get the list of meals from the response body
+                    List<Meal> meals = response.body().getMeals();
+
+                    Log.i(TAG, "onResponseCallback: Meals retrieved: " + meals);
+                    if (networkCallback != null) {
+                        networkCallback.onSuccessFilterByArea(meals);
+                    } else {
+                        Log.e(TAG, "Network callback is not initialized.");
+                    }
+                } else {
+                    Log.e(TAG, "Response body is null.");
+                }
+            } else {
+                Log.e(TAG, "Response Error: Code " + response.code() + " Message: " + response.message());
+            }
+
+        }
+
+        @Override
+        public void onFailure(Call<Meals> call, Throwable t) {
+            Log.i(TAG, "onFailureCallback" );
+            networkCallback.onFailureFilterByArea(t.getMessage());
+            t.printStackTrace();
+
+        }
+    });
+}
+/********************************************************************************************/
 }

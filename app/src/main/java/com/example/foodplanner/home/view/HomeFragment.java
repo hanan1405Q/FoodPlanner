@@ -64,9 +64,10 @@ public class HomeFragment extends Fragment implements HomeView {
                 Intent intent=new Intent(getActivity(), DetailedMeal.class);
                 intent.putExtra(mealObject,targetMeal);
                 startActivity(intent);
-                // String str=txMealName.getText().toString();
-                Toast.makeText(requireContext(), "I am Leaving Home Fragment to Detailed Meal Activity  ", Toast.LENGTH_SHORT).show();
-                Toast.makeText(requireContext(), "Meal Name = "+ targetMeal.getName().toString(), Toast.LENGTH_SHORT).show();
+
+                    /*Debug Purpose*/
+//                Toast.makeText(requireContext(), "I am Leaving Home Fragment to Detailed Meal Activity  ", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(requireContext(), "Meal Name = "+ targetMeal.getName().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 

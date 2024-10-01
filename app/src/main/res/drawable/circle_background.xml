@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <size android:width="40dp" android:height="40dp" />
+
+    <!-- Solid background color -->
+    <solid android:color="@color/backgroundColor"/> <!-- Change the color to whatever fits your design -->
+
+    <!-- Optional: Add a stroke to the circle -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/red"/> <!-- Red border to match delete icon -->
+
+    <!-- Optional: Add padding -->
+    <padding
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="2dp" />
+
+</shape>

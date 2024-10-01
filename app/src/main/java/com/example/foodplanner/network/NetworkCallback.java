@@ -24,4 +24,14 @@ public interface NetworkCallback {
         public  void onSuccessListMealCategories(CategoryResponse categories);
         public  void onFailureListMealCategories(String errMSG);
 
+        public void onSuccessFilterByCategory(List<Meal> meals);
+        public void onFailureFilterByCategory(String errMSG);
+
+        public void onSuccessFilterByIngredient(List<Meal> meals);
+        public void onFailureFilterByIngredient(String errMSG);
+
+
+        public void onSuccessFilterByArea(List<Meal> meals);
+        public void onFailureFilterByArea(String errMSG);
+
 }

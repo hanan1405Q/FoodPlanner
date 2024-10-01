@@ -60,6 +60,36 @@ public class HomePresenter implements NetworkCallback {
         Log.i("CatRes","Failed to Fetch Category list");
         homeView.showError("Failed to Fetch Category");
     }
+/*********************************************************************************/
+    @Override
+    public void onSuccessFilterByCategory(List<Meal> meals) {
+
+    }
+
+    @Override
+    public void onFailureFilterByCategory(String errMSG) {
+
+    }
+
+    @Override
+    public void onSuccessFilterByIngredient(List<Meal> meals) {
+
+    }
+
+    @Override
+    public void onFailureFilterByIngredient(String errMSG) {
+
+    }
+
+    @Override
+    public void onSuccessFilterByArea(List<Meal> meals) {
+
+    }
+
+    @Override
+    public void onFailureFilterByArea(String errMSG) {
+
+    }
 
     @Override
     public void onSuccessSearchByNameResult(List<Meal> meals) {

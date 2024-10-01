@@ -57,7 +57,7 @@ public class MainActivity2 extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
         // Show Toast message to confirm fragment replacement
-        Toast.makeText(this, "Fragment replaced", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Fragment replaced", Toast.LENGTH_SHORT).show();
     }
 
 }

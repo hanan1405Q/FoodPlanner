@@ -18,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.Meal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
@@ -26,15 +27,21 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
     private List<Meal> values;
     private static final String TAG = "FavRecyclerView";
     private FavFragmentOnclick  listener;
-    public FavAdapter(Context context, List<Meal>values, FavFragmentOnclick listener) {
+    private boolean showDeleteButton;
+
+    public FavAdapter(Context context, List<Meal>values, FavFragmentOnclick listener,Boolean showDeleteButton) {
         this.context = context;
-        this.values=values;
+        // Initialize with an empty list if `values` is null
+        this.values = (values != null) ? values : new ArrayList<>();
+
         this.listener=listener;
+        this.showDeleteButton=showDeleteButton;
     }
 
     public void setValues(List<Meal> values)
     {
-        this.values = values;
+
+        this.values = (values != null) ? values : new ArrayList<>();
         notifyDataSetChanged();
     }
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -52,6 +59,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
              txtMealName=v.findViewById(R.id.txtFavMealName);
              txtMealCountry=v.findViewById(R.id.txtFavMealCountry);
              btnDelete=v.findViewById(R.id.btnDelete);
+            // Show or hide the delete button based on the parameter
+            btnDelete.setVisibility(showDeleteButton ? View.VISIBLE : View.GONE);
 
         }
 
@@ -93,6 +102,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return values.size();
+        return (values != null) ? values.size() : 0;
     }
 }
