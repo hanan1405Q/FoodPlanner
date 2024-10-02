@@ -33,7 +33,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.ViewHolder> {
         this.context = context;
         // Initialize with an empty list if `values` is null
         this.values = (values != null) ? values : new ArrayList<>();
-
         this.listener=listener;
         this.showDeleteButton=showDeleteButton;
     }

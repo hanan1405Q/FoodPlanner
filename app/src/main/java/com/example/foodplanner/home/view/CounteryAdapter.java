@@ -1,5 +1,7 @@
 package com.example.foodplanner.home.view;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -36,10 +39,11 @@ public class CounteryAdapter extends RecyclerView.Adapter<CounteryAdapter.ViewHo
         notifyDataSetChanged();
     }
     //Provide a suitable Constructor
-    public CounteryAdapter(Context context, List<Country>  data)
+    public CounteryAdapter(Context context, List<Country>  data,ClickListener listener)
     {
         this.context=context;
         values=data;
+        this.listener=listener;
     }
     public class ViewHolder extends RecyclerView.ViewHolder
     {
@@ -87,7 +91,9 @@ public class CounteryAdapter extends RecyclerView.Adapter<CounteryAdapter.ViewHo
         holder.cardCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.countryCardListener(values.get(position));
+                Toast.makeText(view.getContext(),"counteryName is "+values.get(position).getCountryName(),Toast.LENGTH_SHORT).show();
+                listener.countryCardListener(values.get(position).getCountryName());
+
             }
         });
 

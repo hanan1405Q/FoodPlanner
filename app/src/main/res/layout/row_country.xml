@@ -37,7 +37,7 @@
             android:layout_marginTop="4dp"
             android:text="Egypt"
             android:fontFamily="@font/meriendavariablefontwght"
-            android:textColor="@android:color/black"
+            android:textColor="@color/titleColor"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/imgFlag"
