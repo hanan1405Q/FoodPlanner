@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.example.foodplanner.home.view.HomeView;
 import com.example.foodplanner.model.CategoryResponse;
+import com.example.foodplanner.model.Country;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Meals;
 import com.example.foodplanner.model.Repository;
@@ -29,7 +30,7 @@ public class HomePresenter implements NetworkCallback {
         Log.i("MealReq","Request from Repo to get Random Image Meal");
         repository.getRandomMeal(this);
     }
-    public void getCategoryMeal()
+    public void listCategoryMeal()
     {
         Log.i("MealReq","Request from Repo to get category");
         repository.getCategoryMeal(this);
@@ -39,6 +40,11 @@ public class HomePresenter implements NetworkCallback {
     public void onSuccessRandomResult(Meal meal) {
         Log.i("MealRes","Success to Fetch Image");
             homeView.showRandomMeal(meal);
+    }
+
+    public List<Country> listArea()
+    {
+        return repository.getArea();
     }
 
     @Override

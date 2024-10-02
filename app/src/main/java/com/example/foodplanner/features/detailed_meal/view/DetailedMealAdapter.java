@@ -1,6 +1,5 @@
 package com.example.foodplanner.features.detailed_meal.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
-import com.example.foodplanner.home.view.HomeAdapter;
 import com.example.foodplanner.model.IngredientData;
-import com.example.foodplanner.model.Meal;
 
 import java.util.List;
 

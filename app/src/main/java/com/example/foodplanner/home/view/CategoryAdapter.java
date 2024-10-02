@@ -20,19 +20,19 @@ import com.example.foodplanner.model.Category;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder>{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
     private final Context context;
     private List<Category> values;
     //private OnFavouriteClickListener listener;
     private static final String TAG="HomeRecyclerView";
 
-    public  void setData(List<Category> categories)
+    public  void setData(List<Category> data)
     {
-        this.values=categories;
+        this.values=data;
     }
     //Provide a suitable Constructor
-    public HomeAdapter(Context context, List<Category>  categories)
+    public CategoryAdapter(Context context, List<Category>  categories)
     {
         this.context=context;
         values=categories;

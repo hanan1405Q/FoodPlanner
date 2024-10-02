@@ -68,10 +68,18 @@ public class Repository {
     {
        mealLocalDataSource.removeMeal(meal);
     }
-
     public LiveData<List<Meal>> getStoredMeals()
     {
        return  mealLocalDataSource.getAllMeals();
     }
+
+    /****************** HandMade DataSource *******************/
+
+    public List<Country> getArea() {
+        CountryList countries = CountryList.getInstance(); // Ensure the class name is correct
+        List<Country> c = countries.getAllAreas(); // Retrieve the list of countries
+        return c;
+    }
+
 
 }

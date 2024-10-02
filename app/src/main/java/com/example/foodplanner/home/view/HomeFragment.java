@@ -3,7 +3,6 @@ package com.example.foodplanner.home.view;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +22,7 @@ import com.example.foodplanner.db.MealLocalDataSource;
 import com.example.foodplanner.features.detailed_meal.view.DetailedMeal;
 import com.example.foodplanner.home.presenter.HomePresenter;
 import com.example.foodplanner.model.Category;
+import com.example.foodplanner.model.Country;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
@@ -31,16 +31,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements HomeView {
+public class HomeFragment extends Fragment implements HomeView,ClickListener {
 
     public static final String mealObject="MEAL_OBJECT";
-    RecyclerView recyclerView;
-    HomeAdapter adt;
+    RecyclerView recyclerViewCategory;
+    RecyclerView recyclerViewCountry;
+    CategoryAdapter adt1;
+    CounteryAdapter adt2;
     List<Category> categories;
+    List<Country>  countries;
     HomePresenter homePresenter;
+
     ImageView imgMeal;
     TextView txMealName;
     CardView  cardView;
+
     Meal targetMeal;
 
     @Override
@@ -72,18 +77,31 @@ public class HomeFragment extends Fragment implements HomeView {
         });
 
 
-        /*setup the recycler view */
-        recyclerView = view.findViewById(R.id.recycler_randomCategory);
-        recyclerView.setHasFixedSize(true);
+        /*setup the recycler view for Category */
+        recyclerViewCategory = view.findViewById(R.id.rvListCategory);
+        recyclerViewCategory.setHasFixedSize(true);
         LinearLayoutManager mgr = new LinearLayoutManager(requireContext());
         mgr.setOrientation(RecyclerView.HORIZONTAL);
-        recyclerView.setLayoutManager(mgr);
-        adt = new HomeAdapter(requireContext(), new ArrayList<>());
-        recyclerView.setAdapter(adt);
+        recyclerViewCategory.setLayoutManager(mgr);
+        adt1 = new CategoryAdapter(requireContext(), new ArrayList<>());
+        recyclerViewCategory.setAdapter(adt1);
+
+        /*setup the recycler view for Country */
+        recyclerViewCountry = view.findViewById(R.id.rvListCountry);
+        recyclerViewCountry.setHasFixedSize(true);
+        LinearLayoutManager mgr1 = new LinearLayoutManager(requireContext());
+        mgr1.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerViewCountry.setLayoutManager(mgr1);
+        adt2 = new CounteryAdapter(requireContext(), new ArrayList<>());
+        recyclerViewCountry.setAdapter(adt2);
 
         /*Request the Data*/
         homePresenter.getRandomMeal();
-        homePresenter.getCategoryMeal();
+        homePresenter.listCategoryMeal();
+
+        /*Synchorounce Request*/
+        List<Country> countries=homePresenter.listArea();
+        adt2.setData(countries);
 
         return view;
     }
@@ -102,12 +120,22 @@ public class HomeFragment extends Fragment implements HomeView {
 
     @Override
     public void showCategoryMeal(List<Category> categories) {
-        adt.setData(categories);
-        adt.notifyDataSetChanged();
+        adt1.setData(categories);
+        adt1.notifyDataSetChanged();
     }
 
     @Override
     public void showError(String str) {
         Toast.makeText(requireContext(), str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void countryCardListener(Country country) {
+
+    }
+
+    @Override
+    public void CategoryCardListener(Category category) {
+
     }
 }

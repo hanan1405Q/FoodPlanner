@@ -2,23 +2,15 @@ package com.example.foodplanner.features.detailed_meal.view;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,12 +19,8 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.foodplanner.R;
 import com.example.foodplanner.db.MealLocalDataSource;
 import com.example.foodplanner.features.detailed_meal.presenter.DetailedMealPresenter;
-import com.example.foodplanner.home.presenter.HomePresenter;
-import com.example.foodplanner.home.view.HomeAdapter;
-import com.example.foodplanner.home.view.HomeFragment;
 import com.example.foodplanner.model.IngredientData;
 import com.example.foodplanner.model.Meal;
-import com.example.foodplanner.model.Meals;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
