@@ -31,6 +31,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
@@ -137,14 +138,20 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
 
     private void opeanDialog()
     {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
         DatePickerDialog dailog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
                 Toast.makeText(DetailedMeal.this,String.valueOf(year)+"."
-                        +String.valueOf(month)+"."+String.valueOf(day), LENGTH_SHORT).show();
+                        +String.valueOf(month+1)+"."+String.valueOf(day), LENGTH_SHORT).show();
             }
-        }, 2024, 10, 6);
+        }, 2024, 9, 6);
+
+        dailog.getDatePicker().setMinDate(calendar.getTimeInMillis());
 
         dailog.show();
     }
