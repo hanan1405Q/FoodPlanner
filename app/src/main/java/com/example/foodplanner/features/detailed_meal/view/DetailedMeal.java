@@ -2,8 +2,10 @@ package com.example.foodplanner.features.detailed_meal.view;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -124,36 +126,29 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
                 Toast.makeText(getApplicationContext(),"This Meal Added To Favourite", LENGTH_SHORT).show();
             }
         });
+
+        fabCalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                opeanDialog();
+            }
+        });
     }
 
-//    @Override
-//    public void showMeal(List<Meal> meals) {
-//        Meal meal=meals.get(0);
-//
-//        Glide.with(getApplicationContext()).load(meal.getImgSource())
-//                .apply(new RequestOptions().override(300, 300)
-//                .placeholder(R.drawable.loadingimag_animation))
-//                .into(imgMeal);
-//        txtMealName.setText(meal.getName());
-//        txtCountry.setText(meal.getArea());
-//
-//        adt.setData(meal.getIngredientAndMeasure());
-//        mealPresenter.checkYouTubeURL(meal.getYoutubeSource());
-//        txtInstruction.setText(meal.getInstructions());
-//
-//        fabFavourite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mealPresenter.addToFav(meal);
-//            }
-//        });
-//
-//    }
-//
-//    @Override
-//    public void showError(String str) {
-//        Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
-//    }
+    private void opeanDialog()
+    {
+        DatePickerDialog dailog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+                Toast.makeText(DetailedMeal.this,String.valueOf(year)+"."
+                        +String.valueOf(month)+"."+String.valueOf(day), LENGTH_SHORT).show();
+            }
+        }, 2024, 10, 6);
+
+        dailog.show();
+    }
+
 
     @Override
     public void playYouTubeVideo(String videoId) {
