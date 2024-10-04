@@ -143,6 +143,7 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
     private void opeanDialog(Meal meal)
     {
         pMeal.setMeal(meal);
+        pMeal.setPlannedMealId(meal.getId());
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -153,8 +154,8 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
                 date=String.valueOf(year)+"." +String.valueOf(month+1)+"."+String.valueOf(day);
                 pMeal.setDate(date);
                 mealPresenter.addToPlane(pMeal);
-                Toast.makeText(DetailedMeal.this,String.valueOf(day)+"."
-                        +String.valueOf(month+1)+"."+String.valueOf(year), LENGTH_SHORT).show();}
+                Toast.makeText(DetailedMeal.this,"This Meal Added To Plane in "+String.valueOf(year)+"."
+                        +String.valueOf(month+1)+"."+String.valueOf(day), LENGTH_SHORT).show();}
         }, 2024, 9, 6);
 
         dailog.getDatePicker().setMinDate(calendar.getTimeInMillis());

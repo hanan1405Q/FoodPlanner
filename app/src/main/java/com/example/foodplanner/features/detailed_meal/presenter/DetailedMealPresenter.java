@@ -46,6 +46,7 @@ public class DetailedMealPresenter {
 
     public void addToPlane(PlannedMeal meal)
     {
+        Log.i("INSERT" ,"addToPlane: Iam leaving to repo to insert "+meal.getMeal().getName());
         repo.insertPlannedMeal(meal);
     }
 

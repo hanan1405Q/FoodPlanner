@@ -78,7 +78,9 @@ public class CalenderFragment extends Fragment implements CalenderViewInterface,
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                String selectedDate = day + "-" + (month + 1) + "-" + year;
+                String selectedDate = year + "." + (month + 1) + "." + day;
+                Toast.makeText(requireContext(),"Leaving Fragment with selectd Date"
+                +selectedDate,Toast.LENGTH_SHORT).show();
                presenter.observeMealsByDate(CalenderFragment.this,selectedDate);
             }
         });

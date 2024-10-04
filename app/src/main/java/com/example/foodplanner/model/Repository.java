@@ -73,7 +73,10 @@ public class Repository {
        return  mealLocalDataSource.getAllMeals();
     }
 
-    public  void insertPlannedMeal(PlannedMeal meal){mealLocalDataSource.insertPlannedMeal(meal);}
+    public  void insertPlannedMeal(PlannedMeal meal){
+        Log.i("INSERT", "I am in the Repo To Insert this Meal");
+        mealLocalDataSource.insertPlannedMeal(meal);
+    }
     public  void deletePlannedMeal(PlannedMeal meal){mealLocalDataSource.removePlannedMeal(meal);}
     public LiveData<List<PlannedMeal>> getStoredPlannedMeals()
     {
@@ -83,7 +86,7 @@ public class Repository {
 
     public LiveData<List<PlannedMeal>> getPlannedMealsByDate(String date)
     {
-        Log.i("REPO", "getStoredPlannedMealsBYDATE: ");
+        Log.i("REPO", "getStoredPlannedMealsBYDATE: "+date);
         return  mealLocalDataSource.getMealsByDate(date);
     }
 
