@@ -35,15 +35,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-            android:text="Egypt"
             android:fontFamily="@font/meriendavariablefontwght"
+            android:text="Egypt"
             android:textColor="@color/titleColor"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/imgFlag"
             app:layout_constraintStart_toEndOf="@id/imgFlag"
             app:layout_constraintTop_toTopOf="@id/imgFlag"
-            app:layout_constraintBottom_toBottomOf="@id/imgFlag"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintVertical_bias="0.468" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

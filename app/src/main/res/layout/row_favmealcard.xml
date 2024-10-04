@@ -9,7 +9,7 @@
         android:id="@+id/cardFavMeal"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/babyPink"
         app:cardCornerRadius="12dp"
         app:cardElevation="8dp"
@@ -17,10 +17,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:padding="8dp">
 
             <!-- Meal Image -->
@@ -28,53 +27,61 @@
                 android:id="@+id/imgFavMeal"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:layout_gravity="center"
                 android:layout_marginBottom="12dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/content_description_pancakes"
                 android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:shapeAppearanceOverlay="@style/RoundCorner"
                 tools:src="@drawable/test_img" />
+
+            <!-- Transparent Delete Button on Top of Image -->
+            <ImageButton
+                android:id="@+id/btnDelete"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:alpha="0.7"
+                app:srcCompat="@drawable/baseline_delete_24"
+                android:contentDescription="@string/delete_meal"
+                android:layout_margin="8dp"
+                app:tint="@color/pink"
+                app:layout_constraintTop_toTopOf="@id/imgFavMeal"
+                app:layout_constraintEnd_toEndOf="@id/imgFavMeal" />
 
             <!-- Meal Name -->
             <TextView
                 android:id="@+id/txtFavMealName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:fontFamily="@font/meriendavariablefontwght"
                 android:maxLines="2"
                 android:text="@string/name_of_meal"
                 android:textAlignment="center"
                 android:textColor="@color/titleColor"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/imgFavMeal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Meal Country -->
             <TextView
                 android:id="@+id/txtFavMealCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/meriendavariablefontwght"
                 android:text="@string/country"
                 android:textColor="@color/bodyTextColor"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/txtFavMealName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Delete Button -->
-            <ImageButton
-                android:id="@+id/btnDelete"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:background="@drawable/circle_background"
-                app:srcCompat="@drawable/baseline_delete_outline_24"
-                android:contentDescription="@string/delete_meal"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"/>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -98,10 +105,10 @@
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent">-->
 
-<!--        &lt;!&ndash; ConstraintLayout inside the CardView &ndash;&gt;-->
 <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content">-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="8dp">-->
 
 <!--            &lt;!&ndash; Meal Image &ndash;&gt;-->
 <!--            <com.google.android.material.imageview.ShapeableImageView-->
@@ -109,24 +116,20 @@
 <!--                android:layout_width="180dp"-->
 <!--                android:layout_height="180dp"-->
 <!--                android:layout_marginBottom="12dp"-->
-<!--                android:layout_marginTop="8dp"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:layout_marginEnd="8dp"-->
 <!--                android:adjustViewBounds="true"-->
 <!--                android:contentDescription="@string/content_description_pancakes"-->
 <!--                android:scaleType="centerCrop"-->
 <!--                app:layout_constraintTop_toTopOf="parent"-->
 <!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintEnd_toStartOf="@+id/btnDelete"-->
 <!--                app:shapeAppearanceOverlay="@style/RoundCorner"-->
 <!--                tools:src="@drawable/test_img" />-->
 
 <!--            &lt;!&ndash; Meal Name &ndash;&gt;-->
 <!--            <TextView-->
 <!--                android:id="@+id/txtFavMealName"-->
-<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_width="0dp"-->
 <!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="8dp"-->
 <!--                android:fontFamily="@font/meriendavariablefontwght"-->
 <!--                android:maxLines="2"-->
 <!--                android:text="@string/name_of_meal"-->
@@ -155,99 +158,21 @@
 <!--            &lt;!&ndash; Delete Button &ndash;&gt;-->
 <!--            <ImageButton-->
 <!--                android:id="@+id/btnDelete"-->
-<!--                android:layout_width="52dp"-->
+<!--                android:layout_width="50dp"-->
 <!--                android:layout_height="50dp"-->
-<!--                android:backgroundTint="@color/white"-->
 <!--                android:background="@drawable/circle_background"-->
+<!--                app:srcCompat="@drawable/baseline_delete_outline_24"-->
 <!--                android:contentDescription="@string/delete_meal"-->
-<!--                app:srcCompat="@drawable/delete"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:layout_marginEnd="8dp"-->
 <!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintMarginEnd="8dp"-->
-<!--                app:layout_constraintMarginTop="8dp" />-->
+<!--                app:layout_constraintEnd_toEndOf="parent" />-->
 
 <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
 <!--    </androidx.cardview.widget.CardView>-->
 
 <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 
-<!--    &lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
-<!--&lt;!&ndash;<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"&ndash;&gt;-->
-<!--&lt;!&ndash;    xmlns:app="http://schemas.android.com/apk/res-auto"&ndash;&gt;-->
-<!--&lt;!&ndash;    xmlns:tools="http://schemas.android.com/tools"&ndash;&gt;-->
-<!--&lt;!&ndash;    android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;    android:layout_height="wrap_content">&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <androidx.cardview.widget.CardView&ndash;&gt;-->
-<!--&lt;!&ndash;        android:id="@+id/cardFavMeal"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_width="300dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_margin="4dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:backgroundTint="@color/babyPink"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:cardCornerRadius="12dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:cardElevation="8dp"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-<!--&lt;!&ndash;        app:layout_constraintStart_toStartOf="parent">&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <LinearLayout&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:orientation="vertical"&ndash;&gt;-->
-<!--&lt;!&ndash;        android:padding="8dp">&ndash;&gt;-->
-
-<!--&lt;!&ndash;        &lt;!&ndash; Meal Image &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        <com.google.android.material.imageview.ShapeableImageView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/imgFavMeal"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="180dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="180dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_marginBottom="12dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:adjustViewBounds="true"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:contentDescription="@string/content_description_pancakes"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:scaleType="centerCrop"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:shapeAppearanceOverlay="@style/RoundCorner"&ndash;&gt;-->
-<!--&lt;!&ndash;            tools:src="@drawable/test_img" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;        &lt;!&ndash; Meal Name &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/txtFavMealName"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:fontFamily="@font/meriendavariablefontwght"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:maxLines="2"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:text="@string/name_of_meal"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textAlignment="center"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textColor="@color/titleColor"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textSize="16sp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textStyle="bold" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;        &lt;!&ndash; Meal Country &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/txtFavMealCountry"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_gravity="center"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_marginTop="4dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:fontFamily="@font/meriendavariablefontwght"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:text="@string/country"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textColor="@color/bodyTextColor"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:textSize="14sp" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;        &lt;!&ndash; Delete Button &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        <ImageButton&ndash;&gt;-->
-<!--&lt;!&ndash;            android:id="@+id/btnDelete"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_width="30dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:layout_height="30dp"&ndash;&gt;-->
-<!--&lt;!&ndash;            android:contentDescription="@string/delete_meal"&ndash;&gt;-->
-<!--&lt;!&ndash;            app:srcCompat="@drawable/baseline_delete_outline_24" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;    </LinearLayout>&ndash;&gt;-->
-<!--&lt;!&ndash;</androidx.cardview.widget.CardView>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    </androidx.constraintlayout.widget.ConstraintLayout>&ndash;&gt;-->
 
 
 

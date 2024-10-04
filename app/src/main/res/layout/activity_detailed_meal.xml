@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundColor"> <!-- Background color set -->
+    android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,20 +15,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/babyPink"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="8dp"
-            tools:layout_editor_absoluteX="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginTop="24dp"
+        android:backgroundTint="@color/babyPink"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Meal Image -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_gravity="center">
 
-                <!-- Meal Image -->
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imgDetailedMeal"
                     android:layout_width="250dp"
@@ -41,97 +46,114 @@
                     app:shapeAppearanceOverlay="@style/RoundCorner"
                     tools:src="@drawable/test_img" />
 
-                <!-- Meal Name -->
-                <TextView
-                    android:id="@+id/txtDetailedMealName"
-                    android:layout_width="wrap_content"
+                <!-- Buttons Container -->
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/meriendavariablefontwght"
-                    android:maxLines="2"
-                    android:text="@string/name_of_meal"
-                    android:textAlignment="center"
-                    android:textColor="@color/titleColor"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="16dp"> <!-- Spacing from the meal image -->
 
-                <!-- Meal Country -->
-                <TextView
-                    android:id="@+id/txtMealCountry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/meriendavariablefontwght"
-                    android:text="@string/country"
-                    android:textColor="@color/bodyTextColor"
-                    android:textSize="18sp" />
+                    <!-- Favorite Button -->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_favorite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="Add to favorites"
+                        android:tint="@color/buttonTextColor"
+                        app:srcCompat="@drawable/baseline_favorite_border_24" />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                    <!-- Calendar Button -->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fab_calendar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                    android:contentDescription="Add to Calendar"
+                    android:tint="@color/buttonTextColor"
+                    app:srcCompat="@drawable/calendar_month_24dp_e8eaed_fill0_wght400_grad0_opsz24" />
 
-        <!-- Floating Action Buttons -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:backgroundTint="@color/pink"
-            android:contentDescription="Add to favorites"
-            android:tint="@color/buttonTextColor"
-            app:layout_constraintEnd_toStartOf="@+id/fab_calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_mealDetails"
-            app:srcCompat="@drawable/baseline_favorite_border_24" />
+                </LinearLayout>
+            </FrameLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_calendar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="@color/pink"
-            android:contentDescription="Add to Calendar"
-            android:tint="@color/buttonTextColor"
-            app:layout_constraintStart_toEndOf="@id/fab_favorite"
-            app:layout_constraintTop_toBottomOf="@id/card_mealDetails"
-            app:srcCompat="@drawable/calendar_month_24dp_e8eaed_fill0_wght400_grad0_opsz24" />
+            <!-- Meal Name -->
+            <TextView
+                android:id="@+id/txtDetailedMealName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/meriendavariablefontwght"
+                android:maxLines="2"
+                android:text="@string/name_of_meal"
+                android:textAlignment="center"
+                android:textColor="@color/titleColor"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-        <!-- Ingredients RecyclerView -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvIngredient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fab_calendar" />
+            <!-- Meal Country -->
+            <TextView
+                android:id="@+id/txtMealCountry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/meriendavariablefontwght"
+                android:text="@string/country"
+                android:textColor="@color/bodyTextColor"
+                android:textSize="18sp" />
 
-        <!-- Video Section -->
-        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-            android:id="@+id/vidMeal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            app:autoPlay="false"
-            app:layout_constraintTop_toBottomOf="@+id/rvIngredient"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-        <!-- Meal Instructions -->
-        <TextView
-            android:id="@+id/txtInstruction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:fontFamily="@font/meriendavariablefontwght"
-            android:text="@string/instructions"
-            android:textSize="18sp"
-            android:textColor="@color/titleColor"
-            app:layout_constraintTop_toBottomOf="@id/vidMeal" />
+    <!-- Ingredients RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_mealDetails" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.core.widget.NestedScrollView>
+    <!-- Video Section -->
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/vidMeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="16dp"
+        app:autoPlay="false"
+        app:layout_constraintTop_toBottomOf="@+id/rvIngredient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Instructions Title -->
+    <TextView
+        android:id="@+id/txtInstructionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:fontFamily="@font/meriendavariablefontwght"
+        android:text="Instructions:"
+        android:textSize="30sp"
+        android:textColor="@color/titleColor"
+        app:layout_constraintTop_toBottomOf="@id/vidMeal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Meal Instructions -->
+    <TextView
+        android:id="@+id/txtInstruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:fontFamily="@font/meriendavariablefontwght"
+        android:text="@string/instructions"
+        android:textSize="18sp"
+        android:textColor="@color/titleColor"
+        app:layout_constraintTop_toBottomOf="@id/txtInstructionTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
