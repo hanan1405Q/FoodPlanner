@@ -73,6 +73,20 @@ public class Repository {
        return  mealLocalDataSource.getAllMeals();
     }
 
+    public  void insertPlannedMeal(PlannedMeal meal){mealLocalDataSource.insertPlannedMeal(meal);}
+    public  void deletePlannedMeal(PlannedMeal meal){mealLocalDataSource.removePlannedMeal(meal);}
+    public LiveData<List<PlannedMeal>> getStoredPlannedMeals()
+    {
+
+        return  mealLocalDataSource.getAllPlannedMeals();
+    }
+
+    public LiveData<List<PlannedMeal>> getPlannedMealsByDate(String date)
+    {
+        Log.i("REPO", "getStoredPlannedMealsBYDATE: ");
+        return  mealLocalDataSource.getMealsByDate(date);
+    }
+
     /****************** HandMade DataSource *******************/
 
     public List<Country> getArea() {

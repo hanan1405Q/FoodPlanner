@@ -22,6 +22,7 @@ import com.example.foodplanner.favourite.view.FavAdapter;
 import com.example.foodplanner.favourite.view.FavFragmentOnclick;
 import com.example.foodplanner.features.detailed_meal.view.DetailedMeal;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.search.presenter.SearchPresenter;

@@ -6,6 +6,7 @@ import com.example.foodplanner.features.detailed_meal.view.DetailedMealView;
 import com.example.foodplanner.model.CategoryResponse;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Meals;
+import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.NetworkCallback;
 
@@ -21,26 +22,6 @@ public class DetailedMealPresenter {
         this.view=view;
 
     }
-
-
-//
-//    public  void getMealByName(String mealName)
-//    {
-//        Log.i("GetMealByName","Request from Repo to get a Specific Meal By Name");
-//        repo.getMealByName(this,mealName);
-//    }
-//
-
-//    @Override
-//    public void onSuccessSearchByNameResult(List<Meal> meals) {
-//        Log.i("SearchRes","Success to Get Specific Meal By Name");
-//        view.showMeal(meals);
-//    }
-//
-//    @Override
-//    public void onFailureSearchByNameResult(String errMSG) {
-//             view.showError(errMSG);
-//    }
 
     public void  checkYouTubeURL(String url)
     {
@@ -61,6 +42,11 @@ public class DetailedMealPresenter {
     public void addToFav(Meal meal)
     {
         repo.insertMeal(meal);
+    }
+
+    public void addToPlane(PlannedMeal meal)
+    {
+        repo.insertPlannedMeal(meal);
     }
 
 

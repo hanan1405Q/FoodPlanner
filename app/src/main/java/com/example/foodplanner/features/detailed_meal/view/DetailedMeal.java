@@ -23,6 +23,7 @@ import com.example.foodplanner.db.MealLocalDataSource;
 import com.example.foodplanner.features.detailed_meal.presenter.DetailedMealPresenter;
 import com.example.foodplanner.model.IngredientData;
 import com.example.foodplanner.model.Meal;
+import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -54,6 +55,9 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
    DetailedMealAdapter adt;
    List<IngredientData>  ingredientData;
 
+
+    PlannedMeal pMeal=new PlannedMeal();
+    String date;
 
 
     @Override
@@ -131,13 +135,14 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
         fabCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                opeanDialog();
+                opeanDialog(meal);
             }
         });
     }
 
-    private void opeanDialog()
+    private void opeanDialog(Meal meal)
     {
+        pMeal.setMeal(meal);
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -145,10 +150,11 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
         DatePickerDialog dailog=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
-                Toast.makeText(DetailedMeal.this,String.valueOf(year)+"."
-                        +String.valueOf(month+1)+"."+String.valueOf(day), LENGTH_SHORT).show();
-            }
+                date=String.valueOf(year)+"." +String.valueOf(month+1)+"."+String.valueOf(day);
+                pMeal.setDate(date);
+                mealPresenter.addToPlane(pMeal);
+                Toast.makeText(DetailedMeal.this,String.valueOf(day)+"."
+                        +String.valueOf(month+1)+"."+String.valueOf(year), LENGTH_SHORT).show();}
         }, 2024, 9, 6);
 
         dailog.getDatePicker().setMinDate(calendar.getTimeInMillis());
