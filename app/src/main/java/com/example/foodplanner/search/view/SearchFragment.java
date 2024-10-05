@@ -26,6 +26,7 @@ import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.search.presenter.SearchPresenter;
+import com.example.foodplanner.utils.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +64,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, Fav
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Connection.checkConnectionAndAlert(getContext());
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_search, container, false);
 
@@ -93,7 +95,7 @@ public class SearchFragment extends Fragment implements SearchViewInterface, Fav
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 searchType=i;
-                Toast.makeText(requireContext()," option"+searchType+"is selected",Toast.LENGTH_LONG).show();
+                //Toast.makeText(requireContext()," option"+searchType+"is selected",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -126,6 +128,13 @@ public class SearchFragment extends Fragment implements SearchViewInterface, Fav
         Intent intent=new Intent(getActivity(), DetailedMeal.class);
         intent.putExtra("MEAL_OBJECT",meals.get(0));
         startActivity(intent);
+    }
+
+    @Override
+    public void ShowNotValidSearch() {
+        Toast.makeText(requireContext(),
+                "Sorry, we couldn't find any matches. Try adjusting your search terms!",
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override

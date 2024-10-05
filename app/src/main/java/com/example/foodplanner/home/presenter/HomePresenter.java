@@ -51,7 +51,7 @@ public class HomePresenter implements NetworkCallback {
     public void onFailureRandomResult(String errMSG) {
 
         Log.i("MealRes","Failed to Fetch Image");
-        homeView.showError("Failed to Fetch Image");
+       // homeView.showError("Failed to Fetch Image");
     }
 
     @Override
@@ -64,7 +64,7 @@ public class HomePresenter implements NetworkCallback {
     @Override
     public void onFailureListMealCategories(String errMSG) {
         Log.i("CatRes","Failed to Fetch Category list");
-        homeView.showError("Failed to Fetch Category");
+        //homeView.showError("Failed to Fetch Category");
     }
 /*********************************************************************************/
     @Override

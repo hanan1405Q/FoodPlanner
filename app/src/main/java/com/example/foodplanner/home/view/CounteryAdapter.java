@@ -91,7 +91,7 @@ public class CounteryAdapter extends RecyclerView.Adapter<CounteryAdapter.ViewHo
         holder.cardCountry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"counteryName is "+values.get(position).getCountryName(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(view.getContext(),"counteryName is "+values.get(position).getCountryName(),Toast.LENGTH_SHORT).show();
                 listener.countryCardListener(values.get(position).getCountryName());
 
             }

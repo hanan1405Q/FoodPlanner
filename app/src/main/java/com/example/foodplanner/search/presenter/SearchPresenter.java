@@ -1,6 +1,7 @@
 package com.example.foodplanner.search.presenter;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.foodplanner.R;
 import com.example.foodplanner.model.CategoryResponse;
@@ -55,7 +56,8 @@ public class SearchPresenter implements NetworkCallback {
     }
     @Override
     public void onSuccessFilterByCategory(List<Meal> meals) {
-         view.showMeals(meals);
+
+        view.showMeals(meals);
     }
 
     @Override
@@ -75,7 +77,8 @@ public class SearchPresenter implements NetworkCallback {
 
     @Override
     public void onSuccessFilterByArea(List<Meal> meals) {
-        view.showMeals(meals);
+
+         view.showMeals(meals);
     }
 
     @Override
@@ -92,9 +95,10 @@ public class SearchPresenter implements NetworkCallback {
         else
         {
             view.showMeals(meals);
+            flageDetailedMealResponse=false;
         }
 
-        flageDetailedMealResponse=false;
+
     }
 
     @Override

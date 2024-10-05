@@ -24,6 +24,7 @@ import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
 import com.example.foodplanner.search.presenter.SearchPresenter;
+import com.example.foodplanner.utils.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +46,8 @@ public class MealsInCountryFragment extends Fragment implements MealsInCountryVi
             selectedCountry = getArguments().getString("selectedCountry");
         }
 
-        Toast.makeText(requireContext(),"I am in MealsInCountryFragment",
-                Toast.LENGTH_SHORT).show();
+//        Toast.makeText(requireContext(),"I am in MealsInCountryFragment",
+//                Toast.LENGTH_SHORT).show();
 
         /*Creating the Presenter*/
         presenter=new MealsInCountryPresenter(this,
@@ -58,6 +59,7 @@ public class MealsInCountryFragment extends Fragment implements MealsInCountryVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Connection.checkConnectionAndAlert(getContext());
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_list_country, container, false);
 

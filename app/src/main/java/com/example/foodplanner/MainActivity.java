@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.foodplanner.utils.Connection;
+
 public class MainActivity extends AppCompatActivity {
 
     Animation animation;

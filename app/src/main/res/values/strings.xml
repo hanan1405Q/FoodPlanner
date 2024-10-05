@@ -13,5 +13,8 @@
     <string name="ingredient_img">https://www.themealdb.com/images/ingredients/%s-Small.png</string>
     <string name="myfavmeal">My Favourite Meals\n</string>
     <string name="delete_meal">Delet Meal</string>
+    <string name="checkConnection">Please Check your connection,
+         And You can still access your planned meals and favorite meals.\n</string>
+    <string name="connection_lost_image">Connection is lost\n</string>
 
 </resources>

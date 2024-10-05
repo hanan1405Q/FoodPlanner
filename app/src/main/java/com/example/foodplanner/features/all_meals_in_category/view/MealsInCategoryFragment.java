@@ -23,6 +23,7 @@ import com.example.foodplanner.features.detailed_meal.view.DetailedMeal;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.utils.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class MealsInCategoryFragment extends Fragment implements MealsInCategory
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Connection.checkConnectionAndAlert(getContext());
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.fragment_list_category, container, false);
 

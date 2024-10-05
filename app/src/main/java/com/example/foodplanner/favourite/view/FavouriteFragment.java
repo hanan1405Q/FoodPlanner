@@ -21,6 +21,7 @@ import com.example.foodplanner.features.detailed_meal.view.DetailedMeal;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.utils.Connection;
 
 import java.util.ArrayList;
 import java.util.List;

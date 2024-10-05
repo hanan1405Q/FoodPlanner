@@ -30,6 +30,7 @@ import com.example.foodplanner.model.Country;
 import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.utils.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +65,7 @@ public class HomeFragment extends Fragment implements HomeView,ClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Connection.checkConnectionAndAlert(getContext());
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         /*Take Reference To Card Components */

@@ -26,6 +26,7 @@ import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.utils.Connection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,8 +80,6 @@ public class CalenderFragment extends Fragment implements CalenderViewInterface,
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 String selectedDate = year + "." + (month + 1) + "." + day;
-                Toast.makeText(requireContext(),"Leaving Fragment with selectd Date"
-                +selectedDate,Toast.LENGTH_SHORT).show();
                presenter.observeMealsByDate(CalenderFragment.this,selectedDate);
             }
         });
@@ -120,7 +119,7 @@ public class CalenderFragment extends Fragment implements CalenderViewInterface,
 
     void alert (PlannedMeal meal)
     {
-        builder.setMessage("Are you sure you want to remove "+meal.getMeal().getName()+" from Plane?");
+        builder.setMessage("Are you sure you want to remove "+meal.getMeal().getName()+" from  your Plane?");
         builder.setCancelable(true);
         builder.setPositiveButton("Yes", (DialogInterface.OnClickListener) (dialog, which) -> {
             // When the user click yes button then app will close

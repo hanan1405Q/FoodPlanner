@@ -26,6 +26,7 @@ import com.example.foodplanner.model.Meal;
 import com.example.foodplanner.model.PlannedMeal;
 import com.example.foodplanner.model.Repository;
 import com.example.foodplanner.network.MealRemoteDataSource;
+import com.example.foodplanner.utils.Connection;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
@@ -64,6 +65,8 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        Connection.checkConnectionAndAlert(this);
         setContentView(R.layout.activity_detailed_meal);
 
         /*Initialize The Presenter ***(SO IMPORTANT)****/
@@ -128,7 +131,7 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
             @Override
             public void onClick(View view) {
                 mealPresenter.addToFav(meal);
-                Toast.makeText(getApplicationContext(),"This Meal Added To Favourite", LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"This Meal Added To Your Favourite", LENGTH_SHORT).show();
             }
         });
 
@@ -154,7 +157,7 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
                 date=String.valueOf(year)+"." +String.valueOf(month+1)+"."+String.valueOf(day);
                 pMeal.setDate(date);
                 mealPresenter.addToPlane(pMeal);
-                Toast.makeText(DetailedMeal.this,"This Meal Added To Plane in "+String.valueOf(year)+"."
+                Toast.makeText(DetailedMeal.this,"This Meal Added To Your Plane in "+String.valueOf(year)+"."
                         +String.valueOf(month+1)+"."+String.valueOf(day), LENGTH_SHORT).show();}
         }, 2024, 9, 6);
 
