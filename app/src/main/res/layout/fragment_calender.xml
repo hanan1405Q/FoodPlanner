@@ -1,51 +1,56 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@color/backgroundColor">
 
-    <!-- Title for the fragment -->
-    <TextView
-        android:id="@+id/calendarTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wellcome, Your Planned Meals"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:textColor="@color/titleColor"
-        android:fontFamily="@font/meriendavariablefontwght"
-        android:layout_gravity="center_horizontal" />
-
-    <!-- Calendar View for selecting a date -->
-    <CalendarView
-        android:id="@+id/calenderViewMeal"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:minDate="10/01/2024"
-        android:selectedWeekBackgroundColor="@color/accent"
-        android:weekNumberColor="@color/accent" />
+        android:layout_height="wrap_content">
 
-    <!-- Add space between CalendarView and TextView -->
-    <TextView
-        android:id="@+id/txtDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Meals for Selected Date"
-        android:textColor="@color/pink"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <!-- Title for the fragment -->
+        <TextView
+            android:id="@+id/calendarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Planned Meals"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/titleColor"
+            android:fontFamily="@font/meriendavariablefontwght"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp" />
 
-    <!-- Add space between TextView and RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCalenderMeals"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1" />
+        <!-- Calendar View for selecting a date -->
+        <CalendarView
+            android:id="@+id/calenderViewMeal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:minDate="10/01/2024"
+            android:selectedWeekBackgroundColor="@color/accent"
+            android:weekNumberColor="@color/accent" />
 
-    <!-- RecyclerView to display meals associated with the selected date -->
+        <!-- RecyclerView for displaying meals -->
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center"
+            android:text="Your Planned Meals In The Selected Date: "
+            android:textColor="@color/bodyTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCalenderMeals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp" />
+        <!-- Added marginBottom to prevent disappearing under navigation -->
+
+    </LinearLayout>
+</ScrollView>

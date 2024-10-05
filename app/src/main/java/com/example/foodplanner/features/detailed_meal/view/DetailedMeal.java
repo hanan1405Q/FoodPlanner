@@ -66,7 +66,6 @@ public class DetailedMeal extends AppCompatActivity implements DetailedMealView{
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        Connection.checkConnectionAndAlert(this);
         setContentView(R.layout.activity_detailed_meal);
 
         /*Initialize The Presenter ***(SO IMPORTANT)****/

@@ -64,7 +64,7 @@ public class CalenderFragment extends Fragment implements CalenderViewInterface,
         recyclerView = v.findViewById(R.id.rvCalenderMeals);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager mgr = new LinearLayoutManager(requireContext());
-        mgr.setOrientation(RecyclerView.VERTICAL);
+        mgr.setOrientation(RecyclerView.HORIZONTAL);
         recyclerView.setLayoutManager(mgr);
 
         meals = new ArrayList<PlannedMeal>(){};
